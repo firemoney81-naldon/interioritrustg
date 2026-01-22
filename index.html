@@ -1,23 +1,428 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+    /* 기본 스타일 재설정 */
+    body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; margin: 0; padding: 0; background: #f4f7f6; color: #333; }
+    header { background: #e0f2f1; padding: 40px 15px; text-align: center; border-bottom: 5px solid #004d40; }
+    section { max-width: 900px; margin: 20px auto; padding: 30px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    h1, h2, h3 { color: #004d40; font-weight: 700; }
+    h1 { font-size: 2.5em; margin-top: 0; }
+    h2 { font-size: 2em; border-bottom: 2px solid #e0f2f1; padding-bottom: 10px; margin-top: 30px; }
+    h3 { font-size: 1.5em; color: #00796b; margin-top: 25px; }
+    p { margin-bottom: 20px; text-align: justify; }
+    ul, ol { padding-left: 25px; margin-bottom: 20px; }
+    li { margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+    th { background: #004d40; color: #fff; font-weight: 500; }
+    td strong { font-weight: 500; }
+    a { color: #00796b; text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: #004d40; text-decoration: underline; }
+
+    /* CTA 버튼 스타일 */
+    .btn-cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #00796b;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 5px 10px rgba(0, 121, 107, 0.4);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-align: center;
+      margin-top: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+    .btn-cta:hover {
+      background: #004d40;
+      transform: translateY(-2px);
+    }
+
+    /* 네비게이션 스타일 */
+    nav {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fcfcfc;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      padding: 15px;
+    }
+    nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; }
+    nav li { margin: 5px; }
+    nav a { display: block; padding: 10px 15px; background: #fff; border: 1px solid #eee; border-radius: 5px; text-align: center; transition: background 0.3s; }
+    nav a:hover { background: #e0f2f1; text-decoration: none; }
+
+    /* 폼 스타일 */
+    form { background: #f9f9f9; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+    label { display: block; margin-bottom: 8px; font-weight: 500; color: #004d40; }
+    input[type="text"], input[type="tel"], textarea, select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    textarea { resize: vertical; height: 120px; }
+
+    /* 반응형 디자인 */
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      header { padding: 30px 10px; }
+      section { padding: 20px; margin: 10px auto; }
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      nav ul { flex-direction: column; }
+      nav li { width: 100%; margin: 5px 0; }
+      .btn-cta { width: 100%; padding: 15px 0; }
+    }
+  </style>
+
+  <!-- Schema.org LocalBusiness 마크업(JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "광주인테리어 전문 컨설팅",
+    "image": "https://domain.com/gwangju_interior_logo.png",
+    "url": "https://domain.com/gwangjuinterior",
+    "telephone": "062-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "광주광역시 서구 상무대로 123",
+      "addressLocality": "광주광역시",
+      "addressRegion": "광주",
+      "postalCode": "61900",
+      "addressCountry": "KR"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "광주광역시"
+    },
+    "priceRange": "₩₩₩",
+    "description": "광주 인테리어 업체 추천 및 견적 비교 서비스. 아파트, 빌라, 상가 인테리어 전문. 저렴한 비용부터 프리미엄 시공까지 내돈내산 후기 기반 맞춤 상담."
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>광주인테리어업체 추천 순위 | 2026년 최신 견적 비용 비교</h1>
+    <p>광주 전 지역 아파트, 상가, 주택 인테리어 전문. 내돈내산 후기 기반 믿을 수 있는 업체 비교 분석.</p>
+    <button class="btn-cta" onclick="location.href='#contact'">지금 바로 무료 견적 비교 상담 받기</button>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#toc">목차</a></li>
+      <li><a href="#cost-guide">인테리어 비용 가이드</a></li>
+      <li><a href="#selection-criteria">업체 선정 기준</a></li>
+      <li><a href="#area-service">광주 지역별 특징</a></li>
+      <li><a href="#design-trends">2026 디자인 트렌드</a></li>
+      <li><a href="#qa">자주 묻는 질문</a></li>
+      <li><a href="#contact">견적 상담 신청</a></li>
+    </ul>
+  </nav>
+
+  <section id="toc">
+    <h2>목차: 광주 인테리어 A to Z 가이드</h2>
+    <ol>
+      <li><a href="#cost-guide">인테리어 비용 가이드: 평수별 평균 금액 분석 (20평, 30평, 40평)</a></li>
+      <li><a href="#cost-breakdown">인테리어 비용 항목별 상세 분석 (철거, 자재, 시공비)</a></li>
+      <li><a href="#selection-criteria">성공적인 인테리어 업체 선정 기준 (내돈내산 후기, 장단점 비교)</a></li>
+      <li><a href="#selection-checklist">인테리어 업체 선정 필수 체크리스트</a></li>
+      <li><a href="#area-service">광주 지역별 인테리어 서비스 특징 (동구, 서구, 남구, 북구, 광산구)</a></li>
+      <li><a href="#top5-recommendation">광주 추천 인테리어 업체 TOP 5 (2026년 기준)</a></li>
+      <li><a href="#design-trends">2026년 인테리어 디자인 트렌드 분석</a></li>
+      <li><a href="#qa">자주 묻는 질문 (FAQ)</a></li>
+      <li><a href="#contact">광주 인테리어 무료 견적 상담 신청</a></li>
+    </ol>
+  </section>
+
+  <section id="cost-guide">
+    <span id="cost-guide-anchor" class="anchor"></span>
+    <h2>1. 광주 인테리어 비용 가이드: 평수별 평균 금액 분석 (2026년)</h2>
+    <p>광주 지역에서 인테리어를 계획할 때 가장 궁금한 점은 역시 '얼마'의 비용이 드는지일 것입니다. 인테리어 비용은 단순히 평당 가격으로 계산하기 어렵습니다. 시공 범위(전체 또는 부분), 자재 등급(일반, 고급), 그리고 철거 여부 등 여러 요소에 따라 크게 달라지기 때문입니다. 저희가 분석한 2026년 광주 인테리어 평균 견적을 참고하여 예산을 세우는 데 도움을 드리고자 합니다.</p>
+
+    <h3>1-1. 평수별 인테리어 평균 비용 (예상 금액)</h3>
+    <p>다음 표는 광주 지역의 일반적인 아파트 인테리어 평균 비용을 평수별로 정리한 것입니다. 이는 자재를 중급(강마루, 실크벽지 기준)으로 선택하고 전체 시공(샷시 제외)을 진행했을 때의 예상 가격입니다. 저렴한곳을 찾거나 고급 자재를 사용할 경우 가격 차이가 클 수 있으니 참고만 하세요.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>평수 (PY)</th>
+          <th>시공 범위</th>
+          <th>평균 견적 (예상 금액)</th>
+          <th>주요 시공 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>20평대 (18~25평)</strong></td>
+          <td>전체 인테리어</td>
+          <td><strong>1,800만원 ~ 2,500만원</strong></td>
+          <td>거실 확장, 주방, 욕실 1개, 기본 도배/장판</td>
+        </tr>
+        <tr>
+          <td><strong>30평대 (28~35평)</strong></td>
+          <td>전체 인테리어</td>
+          <td><strong>2,500만원 ~ 3,500만원</strong></td>
+          <td>거실/방 3개, 주방 구조 변경, 욕실 2개, 샷시 교체 시 추가 비용 발생</td>
+        </tr>
+        <tr>
+          <td><strong>40평대 (38~45평)</strong></td>
+          <td>전체 인테리어</td>
+          <td><strong>3,500만원 ~ 5,000만원</strong></td>
+          <td>프리미엄 자재 선택 증가, 고급 마감재, 거실/주방 대형화</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>1-2. 비용 절감 vs. 만족도: 싼곳의 함정</h3>
+    <p>많은 분들이 광주에서 '저렴한곳'을 찾습니다. 그러나 인테리어 비용은 단순히 '싼곳'을 고른다고 해결되는 문제가 아닙니다. 싼곳을 선택할 경우, 자재의 등급이 낮아지거나 시공 인력의 숙련도가 떨어져 하자가 발생하기 쉽습니다. 특히 A/S 보장이 불분명하거나 추가 비용이 발생하는 경우가 많습니다. 내돈내산 후기를 꼼꼼히 확인하여 가격과 품질 사이의 균형을 찾는 것이 중요합니다.</p>
+    <p><strong>비용 절감 Tip:</strong> 전체 인테리어 대신 부분 인테리어를 고려하거나, 주방 싱크대나 욕실 자재를 직접 구매 후 시공을 맡기는 '반셀프' 방식도 비용을 절약할 수 있는 차이점입니다.</p>
+  </section>
+
+  <section id="cost-breakdown">
+    <span id="cost-breakdown-anchor" class="anchor"></span>
+    <h2>2. 인테리어 비용 항목별 상세 분석 (철거, 자재, 시공비)</h2>
+    <p>인테리어 견적서를 받았을 때, 각 항목이 어떤 의미인지 이해하면 불필요한 비용을 줄이고 합리적인 선택을 할 수 있습니다. 주요 비용 항목을 자세히 살펴보겠습니다.</p>
+    <ul>
+      <li><strong>철거 비용:</strong> 기존 구조물을 뜯어내는 비용으로, 베란다 확장이나 주방 구조 변경 시 발생합니다. 철거 폐기물 처리 비용이 포함되며, 철거 범위에 따라 가격이 달라집니다.</li>
+      <li><strong>자재비:</strong> 인테리어의 가장 큰 부분을 차지하는 비용입니다. 바닥재(마루, 타일), 벽지, 창호(샷시), 주방가구(싱크대), 욕실 자재 등입니다. 자재 브랜드(한샘, LX하우시스 등)와 등급에 따라 가격 차이가 큽니다.</li>
+      <li><strong>시공비(인건비):</strong> 목공, 도배, 타일, 전기, 설비 등 전문 인력의 인건비입니다. 시공 기간과 난이도에 따라 달라집니다.</li>
+      <li><strong>간접 비용:</strong> 관리비, 현장 소장 경비, 폐기물 처리, 안전관리 비용 등입니다.</li>
+    </ul>
+
+    <h3>2-1. 주방 및 욕실 인테리어 비용 비교</h3>
+    <p>주방과 욕실은 인테리어에서 가장 많은 비용이 투입되는 공간입니다. 광주 인테리어 업체들도 이 부분에서 견적 차이가 크게 발생합니다. 특히 주방 싱크대는 자재(도장, PET, 하이그로시)와 하드웨어(댐퍼, 경첩)에 따라 금액이 천차만별입니다.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>공간 구분</th>
+          <th>기본 견적 (예상)</th>
+          <th>고급 견적 (예상)</th>
+          <th>주요 차이점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>주방 (30평대 기준)</strong></td>
+          <td>500만원 ~ 800만원</td>
+          <td>1,000만원 ~ 2,000만원</td>
+          <td>싱크대 자재, 상판 재질 (인조대리석 vs. 천연대리석), 가전 빌트인 여부</td>
+        </tr>
+        <tr>
+          <td><strong>욕실 (1개소 기준)</strong></td>
+          <td>200만원 ~ 300만원</td>
+          <td>400만원 ~ 600만원</td>
+          <td>수전/도기 브랜드, 타일 등급, 젠다이/파티션 유무, 방수 시공 퀄리티</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="selection-criteria">
+    <span id="selection-criteria-anchor" class="anchor"></span>
+    <h2>3. 성공적인 인테리어 업체 선정 기준 (내돈내산 후기, 장단점 비교)</h2>
+    <p>광주에는 수많은 인테리어 업체가 있습니다. 이 중에서 우리 집을 믿고 맡길 수 있는 곳을 고르는 것은 매우 중요한 일입니다. 단순히 견적이 저렴한곳을 찾기보다, 다음 5가지 기준을 중심으로 업체를 비교해야 합니다.</p>
+
+    <h3>3-1. 업체 선정 필수 체크리스트</h3>
+    <ol>
+      <li><strong>사업자 등록 및 건설업 면허 확인:</strong> 정상적인 사업자 등록은 기본입니다. 1500만원 이상의 공사는 건설업 면허가 필요하며, 이를 통해 공사 책임 능력을 확인할 수 있습니다.</li>
+      <li><strong>포트폴리오 및 내돈내산 후기 검증:</strong> 업체의 포트폴리오를 확인하여 내가 원하는 디자인 스타일과 일치하는지 확인해야 합니다. '내돈내산' 후기가 많은지, 블로그나 카페 등에서 실제 시공 경험담을 찾아보는 것도 좋은 방법입니다.</li>
+      <li><strong>투명한 견적서 비교:</strong> 견적서에 '총액'만 적혀있지 않고, 각 항목(자재, 인건비, 시공비 등)이 상세하게 분리되어 있는지 확인해야 합니다. 이를 통해 불필요한 비용이 포함되었는지 확인할 수 있습니다.</li>
+      <li><strong>사후 관리(A/S) 기간 명시:</strong> 인테리어는 공사 후에도 하자가 발생할 수 있습니다. 계약서에 A/S 기간(보통 1년)과 범위를 명확히 명시하는 업체를 선택해야 합니다.</li>
+      <li><strong>업체 비교 추천:</strong> 최소 3곳 이상의 인테리어 업체에서 견적을 받고 비교하는 것이 좋습니다. 각 업체의 장단점을 파악하고 최적의 선택을 할 수 있습니다.</li>
+    </ol>
+
+    <h3>3-2. 좋은 인테리어 업체의 장점과 단점</h3>
+    <p>좋은 업체와 그렇지 않은 업체의 차이점은 여러 면에서 나타납니다. 좋은 광주 인테리어 업체는 단순히 시공을 잘하는 것을 넘어, 고객과의 소통을 중요시하고 공사 기간을 철저히 준수합니다. 반면, 저렴한곳 위주로 운영되는 영세 업체는 자재 등급을 속이거나 A/S를 회피하는 단점이 있습니다.</p>
+
+    <h4>[장점]</h4>
+    <ul>
+      <li><strong>정확한 공정 관리:</strong> 공사 기간을 정확히 지키며, 공정 단계마다 고객에게 진행 상황을 보고합니다.</li>
+      <li><strong>높은 시공 퀄리티:</strong> 숙련된 전문 인력을 투입하여 마감이 깔끔하고 하자가 적습니다.</li>
+      <li><strong>체계적인 A/S:</strong> 문제가 발생했을 때 신속하게 대응하여 보수해줍니다.</li>
+    </ul>
+    <h4>[단점]</h4>
+    <ul>
+      <li><strong>가격이 비쌀 수 있음:</strong> 인건비 및 자재비가 투명하게 공개되므로, 저렴한곳보다 초기 비용이 높을 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <section id="area-service">
+    <span id="area-service-anchor" class="anchor"></span>
+    <h2>4. 광주 지역별 인테리어 서비스 특징 (동구, 서구, 남구, 북구, 광산구)</h2>
+    <p>광주광역시는 5개의 자치구로 구성되어 있으며, 각 지역별로 주거 환경과 인테리어 수요에 차이가 있습니다. 광주 인테리어 업체들은 각 지역 특성에 맞춰 서비스를 제공하는 경우가 많습니다.</p>
+
+    <h3>4-1. 광주 지역별 인테리어 수요 분석</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>지역구</th>
+          <th>주요 지역 (키워드)</th>
+          <th>인테리어 특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>동구</strong></td>
+          <td>봉선동, 학동, 지산동, 산수동</td>
+          <td>구도심 아파트 및 주택 재건축/리모델링 수요, 감각적인 디자인 선호. 봉선동 학군 프리미엄을 위한 고급 자재 인테리어 수요 높음.</td>
+        </tr>
+        <tr>
+          <td><strong>서구</strong></td>
+          <td>상무지구, 금호지구, 풍암동, 화정동</td>
+          <td>신축 아파트 및 오피스텔 수요 다수. 상무지구 오피스텔 인테리어, 금호지구 및 풍암동 20평대/30평대 아파트 리모델링 활발.</td>
+        </tr>
+        <tr>
+          <td><strong>남구</strong></td>
+          <td>진월동, 효덕동, 방림동, 봉선동(일부)</td>
+          <td>신축 및 준신축 아파트 단지 다수. 깔끔한 디자인과 가성비 높은 인테리어 선호.</td>
+        </tr>
+        <tr>
+          <td><strong>북구</strong></td>
+          <td>운암동, 문흥동, 일곡지구, 첨단지구</td>
+          <td>대규모 아파트 단지 밀집 지역. 샷시 교체 및 단열 인테리어 수요 높음. 2026년 첨단지구 인테리어 수요 증가 예상.</td>
+        </tr>
+        <tr>
+          <td><strong>광산구</strong></td>
+          <td>수완지구, 하남지구, 첨단2지구, 선운지구</td>
+          <td>가장 인구 밀도가 높은 신도심 지역. 30평대~40평대 아파트 인테리어 수요가 가장 활발하며, 트렌디한 디자인 선호.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4-2. 광주 인테리어 업체 추천 TOP 5 (2026년 기준)</h3>
+    <p>광주 지역의 내돈내산 후기와 평판, 시공 전문성 등을 종합하여 2026년 기준 추천 업체 5곳을 선정했습니다. (광고성 순위가 아닌 정보성 추천임을 밝힙니다.)</p>
+    <ol>
+      <li><strong>A 인테리어 (상무지구)</strong>: 30평대 이상 아파트 프리미엄 시공 전문. 샷시 및 단열 공사에 강점.</li>
+      <li><strong>B 디자인 (수완지구)</strong>: 젊은 감각의 모던 스타일 디자인 특화. 인스타그램 후기가 많은 곳.</li>
+      <li><strong>C 건축 디자인 (봉선동)</strong>: 주택 및 빌라 인테리어 전문. 부분 인테리어 시공도 꼼꼼하게 진행.</li>
+      <li><strong>D 하우징 (금호동)</strong>: 가성비 좋은 시공을 지향하는 업체. 20평대 인테리어에 특화.</li>
+      <li><strong>E 인테리어 스튜디오 (광산구)</strong>: 상가 및 사무실 인테리어 전문.</li>
+    </ol>
+  </section>
+
+  <section id="design-trends">
+    <span id="design-trends-anchor" class="anchor"></span>
+    <h2>5. 2026년 인테리어 디자인 트렌드 분석</h2>
+    <p>2026년 인테리어 시장은 '지속 가능성'과 '개인화'가 핵심 키워드입니다. 획일화된 디자인보다 개인의 라이프스타일을 반영한 맞춤형 인테리어가 인기를 얻고 있습니다.</p>
+
+    <h3>5-1. 주요 인테리어 디자인 스타일 비교</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>스타일</th>
+          <th>주요 특징</th>
+          <th>장점</th>
+          <th>단점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>미니멀리즘 (Minimalism)</strong></td>
+          <td>단순한 색상(화이트, 베이지), 간결한 선, 불필요한 장식 제거.</td>
+          <td>시각적 안정감, 넓어 보이는 효과, 청소 용이.</td>
+          <td>차가워 보이거나 밋밋하게 느껴질 수 있음.</td>
+        </tr>
+        <tr>
+          <td><strong>스칸디나비아 (Scandinavian)</strong></td>
+          <td>화이트/우드톤 조합, 자연 채광 활용, 실용적 가구 배치.</td>
+          <td>따뜻하고 아늑한 분위기, 포근함, 자연친화적.</td>
+          <td>우드 자재 관리 필요, 자칫 식상하게 느껴질 수 있음.</td>
+        </tr>
+        <tr>
+          <td><strong>모던 클래식 (Modern Classic)</strong></td>
+          <td>고급스러운 자재, 웨인스코팅, 톤 다운된 색상.</td>
+          <td>우아하고 중후한 분위기, 고급스러움.</td>
+          <td>비용 증가, 공간이 좁아 보일 수 있음.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5-2. 2026년 인테리어 핵심 트렌드</h3>
+    <ul>
+      <li><strong>친환경 자재와 지속 가능성:</strong> 포름알데히드 등 유해 물질이 없는 E0 등급 이상의 친환경 자재 사용이 의무화되고 있습니다. 특히, 재활용 가능한 자재(예: 폐기물로 만든 인테리어 소품)에 대한 관심이 높아지고 있습니다.</li>
+      <li><strong>다기능 공간(멀티펑션):</strong> 재택근무 증가로 인해 집이 사무실, 운동 공간, 휴식 공간 등 다양한 역할을 수행해야 합니다. 이동식 가구, 폴딩도어 등을 활용한 가변형 공간 구성이 인기를 끌고 있습니다.</li>
+      <li><strong>스마트 홈 연동:</strong> 조명, 냉난방, 가전제품 등을 음성이나 스마트폰 앱으로 제어하는 스마트 홈 시스템이 인테리어에 필수로 자리 잡고 있습니다.</li>
+    </ul>
+  </section>
+
+  <section id="qa">
+    <span id="qa-anchor" class="anchor"></span>
+    <h2>6. 자주 묻는 질문 (FAQ)</h2>
+    <h3>Q1: 인테리어 업체와 계약 전 꼭 확인해야 할 것은 무엇인가요?</h3>
+    <p>A1: 계약서에 다음 사항이 명시되었는지 확인해야 합니다. 1) 총 공사 금액 및 항목별 비용, 2) 공사 기간 및 지연 시 위약금, 3) 사용되는 자재의 등급 및 브랜드, 4) A/S 기간 및 범위. 견적을 받은 후 싼곳이라고 덜컥 계약하기보다, 꼼꼼하게 장단점을 비교하고 내돈내산 후기를 확인하세요.</p>
+
+    <h3>Q2: 부분 인테리어와 전체 인테리어의 장단점 차이점은 무엇인가요?</h3>
+    <p>A2: <strong>부분 인테리어</strong>는 비용을 절감할 수 있고 공사 기간이 짧다는 장점이 있습니다. 반면, 전체적인 디자인 통일성이 떨어질 수 있고, 추후 추가 시공 시 철거 비용이 이중으로 발생할 수 있다는 단점이 있습니다. <strong>전체 인테리어</strong>는 공간의 완성도가 높고 A/S가 용이하다는 장점이 있지만, 비용이 높고 공사 기간이 길어 임시 거주지가 필요할 수 있습니다.</p>
+
+    <h3>Q3: 인테리어 기간은 얼마나 걸리나요?</h3>
+    <p>A3: 일반적으로 20평대 아파트는 2~3주, 30평대 이상 아파트는 3~4주가 소요됩니다. 샷시 교체, 베란다 확장, 주방 구조 변경 등 대규모 공사가 추가될 경우 1~2주가 더 소요될 수 있습니다. 인테리어 업체와 충분히 상담하여 일정을 조율해야 합니다.</p>
+
+    <h3>Q4: 광주 지역에서 견적을 받을 때 참고할 만한 공인된 정보가 있나요?</h3>
+    <p>A4: 광주 인테리어 관련 정보는 <a href="https://www.gwangju.go.kr/" target="_blank">광주광역시청 공식 홈페이지</a>나 <a href="https://www.cstc.or.kr/" target="_blank">대한건축사협회 광주지부</a> 등에서 관련 법규나 업계 정보를 얻을 수 있습니다. 또한 <a href="https://namu.wiki/w/%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4" target="_blank">나무위키</a>의 인테리어 관련 항목에서도 자재 선택 시 주의사항 등 유용한 정보를 찾아볼 수 있습니다.</p>
+    <p>또한, 정부에서 제공하는 <a href="https://www.consumer.go.kr/" target="_blank">소비자보호원</a> 사이트에서도 인테리어 관련 분쟁 사례나 소비자 가이드를 참고할 수 있으며, <a href="https://www.k-apt.go.kr/k-apt/main.do" target="_blank">공동주택관리정보시스템(K-apt)</a>을 통해 아파트 관리 관련 정보를 확인하는 것도 좋습니다.</p>
+  </section>
+
+  <section id="contact">
+    <span id="contact-anchor" class="anchor"></span>
+    <h2>7. 광주 인테리어 무료 견적 상담 신청</h2>
+    <p>광주 지역의 정확한 인테리어 비용은 현장 방문 견적을 통해서만 알 수 있습니다. 저희는 고객님의 예산과 원하는 스타일에 맞춰 광주 지역의 검증된 여러 인테리어 업체를 비교 추천해드립니다. 지금 바로 문의하세요.</p>
+    <form action="/submit" method="POST" style="max-width:700px; margin:auto;">
+      <label for="name">이름<span style="color:red;">*</span></label><br />
+      <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label><br />
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+      <label for="address">광주 시공 주소 (예: 광주광역시 서구 상무지구)</label><br />
+      <input type="text" id="address" name="address" placeholder="예: 광주광역시 서구 치평동 아파트" />
+
+      <label for="property-type">주거 형태<span style="color:red;">*</span></label><br />
+      <select id="property-type" name="property_type" required>
+        <option value="">선택하세요</option>
+        <option value="아파트">아파트</option>
+        <option value="빌라/주택">빌라/주택</option>
+        <option value="상가/사무실">상가/사무실</option>
+        <option value="오피스텔">오피스텔</option>
+        <option value="기타">기타</option>
+      </select>
+
+      <label for="area">평수 (선택 사항)</label><br />
+      <select id="area" name="area">
+        <option value="">선택하세요</option>
+        <option value="20평 미만">20평 미만</option>
+        <option value="20평대">20평대</option>
+        <option value="30평대">30평대</option>
+        <option value="40평대">40평대</option>
+        <option value="50평 이상">50평 이상</option>
+      </select>
+
+      <label for="move-in-date">입주 희망 시기 (예: 2026년 3월)</label><br />
+      <input type="text" id="move-in-date" name="move_in_date" placeholder="예: 2026년 3월" />
+
+      <label for="budget">예상 예산 범위 (선택 사항)</label><br />
+      <input type="text" id="budget" name="budget" placeholder="예: 2,000만원" />
+
+      <label for="service-type">희망 시공 유형<span style="color:red;">*</span></label><br />
+      <select id="service-type" name="service_type" required>
+        <option value="">선택하세요</option>
+        <option value="전체 인테리어">전체 인테리어</option>
+        <option value="부분 인테리어 (주방/욕실)">부분 인테리어 (주방/욕실)</option>
+        <option value="부분 인테리어 (도배/바닥)">부분 인테리어 (도배/바닥)</option>
+        <option value="상가 인테리어">상가 인테리어</option>
+        <option value="사무실 인테리어">사무실 인테리어</option>
+      </select>
+
+      <label for="message">추가 요청 사항 및 문의 내용</label><br />
+      <textarea id="message" name="message" rows="6" placeholder="원하는 인테리어 스타일, 시공 희망일, 특이사항 등 상세 내용을 남겨주시면 정확한 상담에 도움이 됩니다."></textarea>
+
+      <button type="submit" class="btn-cta">무료 견적 상담 신청하기</button>
+    </form>
+  </section>
+
+  
